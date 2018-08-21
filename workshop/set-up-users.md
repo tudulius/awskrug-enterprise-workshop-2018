@@ -1,4 +1,4 @@
-# Set up users on AWS
+# IAM 사용자 설정하기
 
 여러분도 이미 아시겠지만, AWS에는 루트(_root_)라 불리는 특별한 계정(`루트 계정`)이 있습니다.
 이 계정은 사용자(users), 역할(roles) 그리고 결제 정보에 대한 초기 설정을 수행하는 데 사용됩니다. 
@@ -21,18 +21,17 @@ AWS API, CLI, SDK 그리고 다른 개발 도구들을 위한 액세스 키 ID(*
 
 먼저, AWS console 사용자를 생성합니다:
 
-1. 루트 사용자로 AWS console 로그인.
+1. 루트 사용자ID(AWS 가입에 사용한 email)로 AWS 관리 콘솔(Management Console)에 로그인.
 2. "Security, Identity & Compliance" 섹션에서 **IAM**으로 이동.
 3. 메뉴 Users 클릭.
 4. 버튼 "Add user" 클릭.
-5. Username 을 입력하고,
+5. Username에 `ConsoleUser`를 입력하고,
    **Select AWS access type** 섹션에 있는 **AWS Management Console access** 옵션을 선택한 후, 
    버튼 "Next" 클릭.
    **Require password reset** 옵션을 선택하여 다음번 로그인할 때 비밀번호를 수정하도록 합니다 (안전한 암호를 선택하십시오!).
 6. **Attach existing policies directly** 선택.
-7. `AdministratorAccess`로 검색하고 이를 선택한 후, "Next" 클릭.
-8. "Create user" 클릭. 
-   사용자를 생성한 후 메시지에 표시된 AWS Console 접근 URL 및 비밀번호를 복사합니다.
+7. `AdministratorAccess`를 검색하여 선택한 후, "Next" 클릭.
+8. "Create user"를 클릭하여 사용자를 생성한 후, 메시지에 표시된 AWS Management Console 접근 URL 및 비밀번호를 텍스트 에디터에 복사해 둡니다.
 
 이제, 새로운 사용자로 로그인합니다:
 
@@ -43,10 +42,10 @@ AWS API, CLI, SDK 그리고 다른 개발 도구들을 위한 액세스 키 ID(*
 이다음으로, 프로그래밍 방식으로 액세스할 사용자를 생성합니다:
 
 1. 아래 2~4번을 반복하여 사용자를 설정합니다.
-2. Username 을 입력하고, **Select AWS access type** 섹션에서 **Programmatic access** 옵션을 선택.
+2. Username에 `ProgrammaticUser`를 입력하고, **Select AWS access type** 섹션에서 **Programmatic access** 옵션을 선택.
    "Next" 클릭.
 3. **Attach existing policies directly** 선택.
-4. `AdministratorAccess`로 검색하여 이를 선택한 후, 버튼 "Next" 클릭. 
+4. `PowerUserAccess`로 검색하여 이를 선택한 후, 버튼 "Next" 클릭. 
    물론 실제 상황에서는 더욱 제한적인 접근 권한을 가지는 정책(Policy)을 설계하고 이를 사용합니다.
 5. "Download .csv" 클릭.
 
@@ -55,8 +54,10 @@ AWS API, CLI, SDK 그리고 다른 개발 도구들을 위한 액세스 키 ID(*
 아직 AWS CLI가 설치되어 있지 않다면, [이곳 링크](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)를 따라 해 보세요.
 
 ---
-**추가 작업**: 프로그래밍 방식 액세스 사용자에 `ViewOnlyAccess` 권한을 부여해 보세요. AWS CLI 를 사용하여 할 수 있다면 더욱 좋겠죠.
+**도전 과제**: 
+  1. 프로그래밍 방식 액세스 사용자에 `ViewOnlyAccess` 권한을 부여해 보세요. AWS CLI 를 사용하여 할 수 있다면 더욱 좋겠죠.
+  2. 콘솔 액세스 사용자에게 MFA를 적용시켜 보세요. 이를 위해서는 여러분의 스마트폰에 가상 MFA 어플리케이션을 설치하여야만 합니다.
 
 ---
 
-**Next:** [S3, RDS and EC2](/workshop/s3-web-ec2-api-rds/introduction.md).
+**다음:** [S3, RDS 그리고 EC2](/workshop/s3-web-ec2-api-rds/introduction.md).
